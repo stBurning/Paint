@@ -17,6 +17,7 @@ namespace Paint {
         private static Color fillColor = Color.White;
         private static float width = 1;
         private Pen pen = new Pen(color, width);
+        private Pen brush = new Pen(color, width*5);
         private Pen eraser = new Pen(backColor, width*10);
         private Brush solidBrush = new SolidBrush(fillColor);
         private bool paint = false;
@@ -36,6 +37,8 @@ namespace Paint {
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
             pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+            brush.StartCap = System.Drawing.Drawing2D.LineCap.Round;
+            brush.EndCap = System.Drawing.Drawing2D.LineCap.Round;
             eraser.StartCap = System.Drawing.Drawing2D.LineCap.Round;
             eraser.EndCap = System.Drawing.Drawing2D.LineCap.Round;
         }
@@ -78,6 +81,15 @@ namespace Paint {
                         }
                     case Figure.Line: {
                             gimg.DrawLine(pen, startPoint, currPoint);                            
+                            bg.Render();
+                            break;
+                        }
+                    case Figure.Penta: {
+                            var sz = new Size(Math.Abs(currPoint.X - startPoint.X), Math.Abs(currPoint.Y - startPoint.Y));
+                            Pentagon penta = new Pentagon(startPoint, currPoint);
+                            gimg.DrawImage(img, 0, 0);
+                            penta.DrawPentagon(pen, gimg, currPoint);
+                            if (checkBox1.Checked) penta.FillPentagon(solidBrush, gimg, currPoint);
                             bg.Render();
                             break;
                         }
@@ -129,9 +141,9 @@ namespace Paint {
                             break;
                         }
                     case Figure.Brush: {
-                            gimg.DrawLine(pen, startPoint, currPoint);
+                            gimg.DrawLine(brush, startPoint, currPoint);
                             bgg.DrawImage(img, 0, 0);
-                            bgg.DrawLine(pen, startPoint, currPoint);
+                            bgg.DrawLine(brush, startPoint, currPoint);
                             startPoint = currPoint;
                             bg.Render();
                             break;
@@ -182,6 +194,7 @@ namespace Paint {
                             Pentagon penta = new Pentagon(startPoint, currPoint);               
                             bgg.DrawImage(img, 0, 0);
                             penta.DrawPentagon(pen, bgg, currPoint);
+                            if (checkBox1.Checked) penta.FillPentagon(solidBrush, bgg, currPoint);
                             bg.Render();
                             break;
                         }
@@ -202,6 +215,7 @@ namespace Paint {
             if (mouseEvent.Button == MouseButtons.Left) {
                 var p = (Panel)sender;
                 pen.Color = p.BackColor;
+                brush.Color = p.BackColor;
             }
             if (mouseEvent.Button == MouseButtons.Right) {
                 var p = (Panel)sender;
@@ -244,6 +258,7 @@ namespace Paint {
         private void toolStripMenuItem3_Click(object sender, EventArgs e) {
             var menuItem = (ToolStripMenuItem)sender;
             pen.Width = float.Parse(menuItem.Text);
+            brush.Width = float.Parse(menuItem.Text) * 5;
         }
 
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e) {

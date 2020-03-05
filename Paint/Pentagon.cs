@@ -19,28 +19,40 @@ namespace Paint {
             sz = new Size(Math.Abs(currPoint.X - startPoint.X), Math.Abs(currPoint.Y - startPoint.Y));
             if (currPoint.X < startPoint.X) {
                 if (currPoint.Y < startPoint.Y) {
-                  
+                    points[0] = new Point(currPoint.X, currPoint.Y + Math.Abs(currPoint.Y - startPoint.Y) / 5 * 2);
+                    points[1] = new Point(currPoint.X + Math.Abs(currPoint.X - startPoint.X) / 2, currPoint.Y);
+                    points[2] = new Point(startPoint.X, currPoint.Y + Math.Abs(currPoint.Y - startPoint.Y) / 5 * 2);
+                    points[3] = new Point(currPoint.X + (Math.Abs(currPoint.X - startPoint.X) / 4) * 3, startPoint.Y);
+                    points[4] = new Point(currPoint.X + (Math.Abs(currPoint.X - startPoint.X) / 4), startPoint.Y);
                 } else {
-                    
+                    points[0] = new Point(currPoint.X, startPoint.Y + Math.Abs(currPoint.Y - startPoint.Y) / 5 * 2);
+                    points[1] = new Point(currPoint.X + Math.Abs(currPoint.X - startPoint.X) / 2, startPoint.Y);
+                    points[2] = new Point(startPoint.X, startPoint.Y + Math.Abs(currPoint.Y - startPoint.Y) / 5 * 2);
+                    points[3] = new Point(currPoint.X + (Math.Abs(currPoint.X - startPoint.X) / 4) * 3, currPoint.Y);
+                    points[4] = new Point(currPoint.X + (Math.Abs(currPoint.X - startPoint.X) / 4), currPoint.Y);
                 }
             } else {
                 if (currPoint.Y > startPoint.Y) {
-                    points[0] = new Point(startPoint.X, startPoint.Y + Math.Abs(currPoint.Y - startPoint.Y)/5*2);
+                    points[0] = new Point(startPoint.X, startPoint.Y + Math.Abs(currPoint.Y - startPoint.Y) / 5 * 2);
                     points[1] = new Point(startPoint.X + Math.Abs(currPoint.X - startPoint.X) / 2, startPoint.Y);
                     points[2] = new Point(currPoint.X, startPoint.Y + Math.Abs(currPoint.Y - startPoint.Y) / 5 * 2);
                     points[3] = new Point(startPoint.X + (Math.Abs(currPoint.X - startPoint.X) / 4) * 3, currPoint.Y);
                     points[4] = new Point(startPoint.X + (Math.Abs(currPoint.X - startPoint.X) / 4), currPoint.Y);
-
-
                 } else {
-                    
+                    points[0] = new Point(startPoint.X, currPoint.Y + Math.Abs(currPoint.Y - startPoint.Y) / 5 * 2);
+                    points[1] = new Point(startPoint.X + Math.Abs(currPoint.X - startPoint.X) / 2, currPoint.Y);
+                    points[2] = new Point(currPoint.X, currPoint.Y + Math.Abs(currPoint.Y - startPoint.Y) / 5 * 2);
+                    points[3] = new Point(startPoint.X + (Math.Abs(currPoint.X - startPoint.X) / 4) * 3, startPoint.Y);
+                    points[4] = new Point(startPoint.X + (Math.Abs(currPoint.X - startPoint.X) / 4), startPoint.Y);
                 }
             }
-
         }
 
         public void DrawPentagon(Pen pen, Graphics g, Point currPoint) {
             g.DrawPolygon(pen, points);
+        }
+        public void FillPentagon(Brush brush, Graphics g, Point currPoint) {
+            g.FillPolygon(brush, points);
         }
     }
 }
