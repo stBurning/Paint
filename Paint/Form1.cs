@@ -256,7 +256,7 @@ namespace Paint {
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e) {
-            var menuItem = (ToolStripMenuItem)sender;
+            var menuItem = (ToolStripMenuItem)sender;     
             pen.Width = float.Parse(menuItem.Text);
             brush.Width = float.Parse(menuItem.Text) * 5;
         }
@@ -276,8 +276,18 @@ namespace Paint {
             }
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e) {
+            pen.Width = float.Parse(textBox1.Text);
+            brush.Width = float.Parse(textBox1.Text) * 5;
+            eraser.Width = float.Parse(textBox1.Text) * 5;
+        }
+
         private void button3_Click(object sender, EventArgs e){
             var btn = (ToolStripButton)sender;
+            foreach (ToolStripButton item in toolStrip1.Items){
+                item.Checked = false;
+            }
+            btn.Checked = true;
             switch (btn.Tag){
                 case "Pen": { figure = Figure.Pen; break; }
                 case "Line": { figure = Figure.Line; break; }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.workPanel = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,13 +58,10 @@
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -294,6 +290,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.toolStrip1);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -327,8 +325,7 @@
             this.toolStripButton7,
             this.toolStripButton4,
             this.toolStripButton5,
-            this.toolStripButton6,
-            this.toolStripSplitButton1});
+            this.toolStripButton6});
             this.toolStrip1.Location = new System.Drawing.Point(3, 18);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(347, 32);
@@ -337,6 +334,8 @@
             // 
             // toolStripButton1
             // 
+            this.toolStripButton1.Checked = true;
+            this.toolStripButton1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton1.Image = global::Paint.Properties.Resources.icons8_цветные_50;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -413,59 +412,28 @@
             this.toolStripButton6.Text = "toolStripButton6";
             this.toolStripButton6.Click += new System.EventHandler(this.button3_Click);
             // 
-            // toolStripSplitButton1
-            // 
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem3,
-            this.toolStripMenuItem4,
-            this.toolStripMenuItem5,
-            this.toolStripMenuItem6});
-            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(47, 29);
-            this.toolStripSplitButton1.Text = ".px";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(100, 26);
-            this.toolStripMenuItem3.Tag = "1";
-            this.toolStripMenuItem3.Text = "1";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(100, 26);
-            this.toolStripMenuItem4.Tag = "2";
-            this.toolStripMenuItem4.Text = "2";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(100, 26);
-            this.toolStripMenuItem5.Tag = "3";
-            this.toolStripMenuItem5.Text = "3";
-            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // toolStripMenuItem6
-            // 
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(100, 26);
-            this.toolStripMenuItem6.Tag = "4";
-            this.toolStripMenuItem6.Text = "4";
-            this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(130, 62);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(67, 22);
+            this.textBox1.TabIndex = 2;
+            this.textBox1.Text = "1";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(203, 64);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(26, 17);
+            this.label1.TabIndex = 3;
+            this.label1.Text = ".px";
             // 
             // Form1
             // 
@@ -524,13 +492,10 @@
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
