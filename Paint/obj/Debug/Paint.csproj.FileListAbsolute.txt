@@ -7,3 +7,13 @@ C:\Users\админ\source\repos\Paint\Paint\obj\Debug\Paint.Properties.Resource
 C:\Users\админ\source\repos\Paint\Paint\obj\Debug\Paint.csproj.GenerateResource.cache
 C:\Users\админ\source\repos\Paint\Paint\obj\Debug\Paint.exe
 C:\Users\админ\source\repos\Paint\Paint\obj\Debug\Paint.pdb
+C:\Users\KSUstinov\source\repos\Paint\bin\Debug\Paint.exe.config
+C:\Users\KSUstinov\source\repos\Paint\bin\Debug\Paint.exe
+C:\Users\KSUstinov\source\repos\Paint\bin\Debug\Paint.pdb
+C:\Users\KSUstinov\source\repos\Paint\obj\Debug\Paint.csprojAssemblyReference.cache
+C:\Users\KSUstinov\source\repos\Paint\obj\Debug\Paint.Form1.resources
+C:\Users\KSUstinov\source\repos\Paint\obj\Debug\Paint.Properties.Resources.resources
+C:\Users\KSUstinov\source\repos\Paint\obj\Debug\Paint.csproj.GenerateResource.cache
+C:\Users\KSUstinov\source\repos\Paint\obj\Debug\Paint.csproj.CoreCompileInputs.cache
+C:\Users\KSUstinov\source\repos\Paint\obj\Debug\Paint.exe
+C:\Users\KSUstinov\source\repos\Paint\obj\Debug\Paint.pdb

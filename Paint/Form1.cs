@@ -24,7 +24,7 @@ namespace Paint {
         private Graphics g, gimg;
         private BufferedGraphicsContext bgc = BufferedGraphicsManager.Current;
         private BufferedGraphics bg;
-        private enum Figure { Pen, Line, Ellipse, Rectangle, Eraser, Penta, Brush }
+        private enum Figure { Pen, Line, Ellipse, Rectangle, Eraser, Penta, Brush, Star }
         private Figure figure = Figure.Pen;
         private Point currPoint;
         private Point startPoint;
@@ -90,6 +90,15 @@ namespace Paint {
                             gimg.DrawImage(img, 0, 0);
                             penta.DrawPentagon(pen, gimg, currPoint);
                             if (checkBox1.Checked) penta.FillPentagon(solidBrush, gimg, currPoint);
+                            bg.Render();
+                            break;
+                        }
+                    case Figure.Star: {
+                            var sz = new Size(Math.Abs(currPoint.X - startPoint.X), Math.Abs(currPoint.Y - startPoint.Y));
+                            Star star = new Star(startPoint, currPoint, 10);
+                            gimg.DrawImage(img, 0, 0);
+                            star.Draw(pen, gimg, currPoint);
+                            if (checkBox1.Checked) star.Fill(solidBrush, gimg, currPoint);
                             bg.Render();
                             break;
                         }
@@ -198,6 +207,15 @@ namespace Paint {
                             bg.Render();
                             break;
                         }
+                    case Figure.Star: {
+                            var sz = new Size(Math.Abs(currPoint.X - startPoint.X), Math.Abs(currPoint.Y - startPoint.Y));
+                            Star penta = new Star(startPoint, currPoint, 10);
+                            bgg.DrawImage(img, 0, 0);
+                            penta.Draw(pen, bgg, currPoint);
+                            if (checkBox1.Checked) penta.Fill(solidBrush, bgg, currPoint);
+                            bg.Render();
+                            break;
+                        }
                     case Figure.Eraser: {
                             gimg.DrawLine(eraser, startPoint, currPoint);
                             bgg.DrawImage(img, 0, 0);
@@ -224,17 +242,6 @@ namespace Paint {
             }
         }
 
-
-
-        private void saveButton_Click(object sender, EventArgs e) {
-            saveFileDialog1.AddExtension = true;
-            saveFileDialog1.Filter = "Фаил картинки в формате JPG|*.jpg  |Фаил картинки в формате PNG|*.png";
-            var res = saveFileDialog1.ShowDialog();
-            if (res == DialogResult.OK) {
-                img.Save($"{saveFileDialog1.FileName}", ImageFormat.Jpeg);
-            }
-        }
-
         private void Form1_Resize(object sender, EventArgs e) {
             if (img != null && this.WindowState != FormWindowState.Minimized) {
                 g = workPanel.CreateGraphics();
@@ -251,7 +258,7 @@ namespace Paint {
                 gimg.DrawImage(old_img, 0, 0);
                 g.DrawImage(img, 0, 0);
                 bg = bgc.Allocate(g, new Rectangle(0, 0, workPanel.Width, workPanel.Height));
-                 bg.Graphics.Clear(Color.White);
+                bg.Graphics.Clear(Color.White);
             }
         }
 
@@ -262,7 +269,11 @@ namespace Paint {
         }
 
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e) {
+            openFileDialog1.AddExtension = true;
+            openFileDialog1.Filter = "Фаил картинки в формате JPG|*.jpg |Фаил картинки в формате PNG|*.png |Все файлы|*.*";
+            openFileDialog1.FileName = " ";
             var res = openFileDialog1.ShowDialog();
+            
             if (res == DialogResult.OK) {
                 g.Clear(Color.White);
                 img = new Bitmap(Image.FromFile(openFileDialog1.FileName));
@@ -273,6 +284,15 @@ namespace Paint {
                 g.DrawImage(img, 0, 0);
                 bg = bgc.Allocate(g, new Rectangle(0, 0, workPanel.Width, workPanel.Height));
 
+            }
+        }
+
+        private void saveButton_Click(object sender, EventArgs e) {
+            saveFileDialog1.AddExtension = true;
+            saveFileDialog1.Filter = "Фаил картинки в формате JPG|*.jpg  |Фаил картинки в формате PNG|*.png";
+            var res = saveFileDialog1.ShowDialog();
+            if (res == DialogResult.OK) {
+                img.Save($"{saveFileDialog1.FileName}", ImageFormat.Jpeg);
             }
         }
 
@@ -296,6 +316,7 @@ namespace Paint {
                 case "Eraser": { figure = Figure.Eraser; break; }
                 case "Brush": { figure = Figure.Brush; break; }
                 case "Penta": { figure = Figure.Penta; break; }
+                case "Star": { figure = Figure.Star; break; }
                 default: { break; }
             }
         }
